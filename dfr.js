@@ -1,15 +1,24 @@
 const fs = require('fs'); 
 
-
+//dont forget docstrings
 function fileExists(filename) {
-  // returns true or false
+  if (!fs.existsSync(filename)) {
+      return false;
+  } else {
+    return true;
+  }
 }
 
+console.log(fileExists('./datatrafficdataset_2000.csv'))
 
-function validNumber(value) { // value can be string or numeric
+function validNumber(value) {
+  // Check if value is a number or a string that can be converted to an integer
+  const parsed = parseInt(value, 10);
+  return !isNaN(parsed) && Number.isInteger(parsed) && String(parsed) === value.toString() && parsed >= 0; // value can be string or numeric
  // returns a boolean 
 }
 
+console.log(validNumber("4"))
 
 function dataDimensions(dataframe) {
   // returns a list [rows (int), cols (int)]
